@@ -1,8 +1,8 @@
-const butn1 = document.querySelector('button');
+const allGameButtons = document.querySelectorAll('.gameArea');
 
 const gameBoard = (() => {
     const scoreboard = [];
-    const gameboard  = ['O', 'X', 'O']
+    const gameboard = ['O', 'X', 'O']
 
     return {
         gameboard,
@@ -10,10 +10,19 @@ const gameBoard = (() => {
     }
 })();
 
-// const printGameBoard = (gameboard) => {
-//     gameboard.array.forEach(element => {
-//         console.log(element);
-//     });
-// } 
+let clicks = 0;
 
-console.log(gameBoard);
+allGameButtons.forEach((element) => {
+    function printBtnValue() {
+        if (element.innerText == '' && clicks % 2 == 0) {
+            element.innerText = "X";
+            element.disabled = true;
+            clicks ++;
+        } if (element.innerText == '' && clicks % 2 !== 0) {
+            element.innerText = "O";
+            element.disabled = true;
+            clicks ++;
+        }
+    }
+    element.addEventListener('click', printBtnValue);
+});
